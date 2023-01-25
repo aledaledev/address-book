@@ -1,4 +1,4 @@
-import mysql from 'mysql2'
+import mysql from 'mysql2/promise'
 import config from '../config.js'
 
 const connection = mysql.createConnection({
@@ -8,24 +8,15 @@ const connection = mysql.createConnection({
     password: config.password,
 })
 
-export const addContact = ({name, phone:phone_number}) => {
-    connection.query(`INSERT INTO contacts SET ?`, {name, phone_number:Number(phone_number)}, (err,result) => {
-        if(err) throw err
-        console.log(result);
-    })   
+//parece que es necesario cuando usamos mysql2/promise
+export const getConnection = () => {
+    return connection
 }
 
-export const getContacts = async () => {
-    await connection.query(`SELECT * FROM contacts`, (err,result) => {
-        if(err) throw err
-        return result
-    })  
-}
-
-//parece que siempre se mantiene conectado
-export const connect = () => {
+//parece que siempre se mantenga conectado, usando solo mysql2
+/*const connect = () => {
     connection.connect(err => {
         if(err) throw err
         console.log('conected!');
     })
-}
+}*/

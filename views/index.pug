@@ -1,11 +1,18 @@
 html
     head 
         title= title
-    body  
+        link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
+        link(rel="stylesheet", href="style.css")
+    body
         div.container
-            input(type='text' placeholder='name' id='name')
-            input(type='text' placeholder='phone' id='phone')
-            button(id='btn-add-contact') add contact
-            each contact in contacts 
-                p= `${contact.name} - ${contact.phone_number}`
+            div.form
+                input(type='text' placeholder='name' id='name')
+                input(type='text' placeholder='phone' id='phone')
+                button(id='btn-add-contact') add contact
+            section.contacts
+                each contact in contacts
+                    div.contact
+                        p= `${contact.name}`
+                        p= `${contact.phone_number}`
+                        span(class="remove material-icons" id=contact.id) delete
     script(src='functions.js')
