@@ -2,4 +2,10 @@ html
     head 
         title= title
     body  
-        p= text
+        div.container
+            input(type='text' placeholder='name' id='name')
+            input(type='text' placeholder='phone' id='phone')
+            button(id='btn-add-contact') add contact
+            each contact in contacts 
+                p= `${contact.name} - ${contact.phone_number}`
+    script(src='functions.js')
