@@ -3,13 +3,12 @@ import { addContact, getContacts,removeContact } from './src/model/request.js'
 
 //se muestra de lado del equipo/terminal (servidor)
 const app = express()
-
-app.set('views','./views')
+app.set('views','./src/views')
 app.set('view engine', 'pug')
 
-app.use(express.static('./views'))
+app.use(express.static('./src/views'))
 app.use(express.static('./src'))
-app.use(express.static('./css'))
+app.use(express.static('./src/css'))
 
 app.get('/', async(req,res) => {
     const contacts = await getContacts()
